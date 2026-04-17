@@ -14,191 +14,128 @@
             --border: rgba(251, 191, 36, 0.2);
         }
 
+        /* Essential Mobile Fixes */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body { background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; }
+        html { scroll-behavior: smooth; overflow-x: hidden; }
+        body { background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; overflow-x: hidden; width: 100%; }
 
-        h1, h2, h3 { font-family: 'Syncopate', sans-serif; text-transform: uppercase; letter-spacing: 4px; }
+        h1, h2, h3 { font-family: 'Syncopate', sans-serif; text-transform: uppercase; }
 
         header {
             position: fixed; width: 100%; top: 0; z-index: 1000;
-            padding: 25px 8%; display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 5%; /* Reduced for mobile */
+            display: flex; justify-content: space-between; align-items: center;
             backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05);
+            background: rgba(5,5,5,0.8);
         }
 
-        .logo { font-weight: 700; font-size: 1.1rem; color: var(--accent); text-decoration: none; }
+        .logo { font-weight: 700; font-size: 0.8rem; color: var(--accent); text-decoration: none; letter-spacing: 1px; }
 
         .hero {
-            height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
-            padding: 0 10%; background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop');
+            min-height: 100vh; /* Changed from fixed height to min-height */
+            display: flex; flex-direction: column; justify-content: center; align-items: flex-start;
+            padding: 120px 5% 60px; /* Top padding ensures header doesn't cover text */
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop');
             background-size: cover; background-position: center;
         }
 
-        .hero h1 { font-size: clamp(2.5rem, 6vw, 5rem); line-height: 1.1; margin-bottom: 20px; }
-        .hero span { color: var(--accent); }
-
-        .ticker {
-            background: var(--accent); color: #000; padding: 12px 0; overflow: hidden; white-space: nowrap;
-            font-weight: 800; font-size: 0.7rem; letter-spacing: 2px;
-        }
-        .ticker-inner { display: inline-block; animation: ticker 40s linear infinite; }
-        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-
-        section { padding: 100px 10%; }
-        .section-tag { color: var(--accent); font-size: 0.7rem; font-weight: 700; margin-bottom: 15px; display: block; }
-
-        /* Bento Grid Layout */
-        .services-container {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-auto-rows: 320px;
-            gap: 20px;
-        }
-
-        .service-box {
-            position: relative;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: 0.5s;
-        }
-
-        .service-box img {
-            width: 100%; height: 100%; object-fit: cover;
-            opacity: 0.6; transition: 0.6s;
-        }
-
-        .service-box:hover img { opacity: 0.9; transform: scale(1.08); }
-
-        .service-box .overlay {
-            position: absolute; bottom: 0; left: 0; padding: 30px;
-            background: linear-gradient(transparent, rgba(0,0,0,0.95));
+        /* Hero Text Fixes */
+        .premium-hero-container {
             width: 100%;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
 
-        .service-box h3 { font-size: 0.85rem; margin-bottom: 10px; color: var(--accent); }
-        .service-box p { font-size: 0.8rem; color: #cbd5e1; line-height: 1.4; }
+        .premium-h1 {
+            font-weight: 900;
+            font-size: clamp(1.8rem, 8vw, 5rem); /* Smaller starting point for mobile */
+            line-height: 1.1;
+            color: #FFFFFF;
+            letter-spacing: -1px;
+            animation: textFloat 6s ease-in-out infinite;
+        }
 
-        .box-large { grid-column: span 2; }
-        .box-tall { grid-row: span 2; }
+        .premium-h1 span {
+            display: block;
+            color: transparent;
+            -webkit-text-stroke: 1px #FFFFFF;
+            font-style: italic;
+            letter-spacing: 2px; /* Reduced for mobile */
+            margin-top: 5px;
+        }
 
-        .premium-table { width: 100%; border-collapse: collapse; margin-top: 50px; background: #0a0a0a; border-radius: 8px; overflow: hidden; }
-        .premium-table th { text-align: left; padding: 25px; border-bottom: 2px solid var(--accent); font-size: 0.65rem; color: var(--accent); }
-        .premium-table td { padding: 25px; border-bottom: 1px solid rgba(255,255,255,0.05); font-size: 0.85rem; color: #e2e8f0; }
-        .premium-table tr:hover td { background: rgba(251, 191, 36, 0.05); color: var(--accent); }
+        .premium-p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 100%;
+            border-left: 2px solid #DAA520;
+            padding-left: 15px;
+            margin-top: 20px;
+        }
 
         .cta-button {
-            display: inline-block; padding: 22px 55px; background: var(--accent); color: #000;
-            text-decoration: none; font-family: 'Syncopate'; font-weight: 700; font-size: 0.75rem;
-            margin-top: 40px; border-radius: 4px; transition: 0.4s; letter-spacing: 2px;
+            display: inline-block; padding: 18px 30px; background: var(--accent); color: #000;
+            text-decoration: none; font-family: 'Syncopate'; font-weight: 700; font-size: 0.65rem;
+            margin-top: 30px; border-radius: 4px; transition: 0.4s; letter-spacing: 1px;
         }
-        .cta-button:hover { transform: scale(1.05); box-shadow: 0 0 40px rgba(251, 191, 36, 0.5); }
 
-        footer { padding: 100px 10%; background: #000; border-top: 1px solid var(--border); }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 50px; }
-        
-        @media (max-width: 900px) {
-            .services-container { grid-template-columns: 1fr; grid-auto-rows: auto; }
-            .box-large, .box-tall { grid-column: span 1; grid-row: span 1; }
-            .service-box { height: 300px; }
+        .ticker {
+            background: var(--accent); color: #000; padding: 10px 0; overflow: hidden; white-space: nowrap;
+            font-weight: 800; font-size: 0.6rem; letter-spacing: 1px;
+        }
+        .ticker-inner { display: inline-block; animation: ticker 30s linear infinite; }
+
+        @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        @keyframes textFloat { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-10px); } }
+
+        /* Tablet & Desktop Adjustments */
+        @media (min-width: 768px) {
+            header { padding: 25px 8%; }
+            .logo { font-size: 1.1rem; }
+            .hero { padding: 0 10%; }
+            .premium-h1 span { letter-spacing: 5px; -webkit-text-stroke: 1.5px #FFFFFF; }
+            .premium-p { font-size: 1.1rem; padding-left: 25px; }
+            .cta-button { font-size: 0.75rem; padding: 22px 55px; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <a href="#" class="logo">GCOBANE Construction Project Pty Ltd</a>
-        <nav style="display: flex; gap: 35px; font-size: 0.65rem; font-family: 'Syncopate';">
+        <a href="#" class="logo">GCOBANE CONSTRUCTION</a>
+        <nav style="display: flex; gap: 15px; font-size: 0.55rem; font-family: 'Syncopate';">
             <a href="#services" style="color:#fff; text-decoration:none;">SERVICES</a>
-            <a href="#projects" style="color:#fff; text-decoration:none;">TRACK RECORD</a>
             <a href="#contact" style="color:var(--accent); text-decoration:none;">INQUIRE</a>
-
         </nav>
     </header>
 
     <section class="hero">
-        <span class="section-tag">Established 2017</span>
-       <style>
-    /* Kinetic Breathing Animation */
-    @keyframes textFloat {
-        0%, 100% { transform: translateY(0); filter: brightness(1); }
-        50% { transform: translateY(-10px); filter: brightness(1.3); }
-    }
-
-    .premium-hero-container {
-        padding: 40px;
-        background: #050505; /* Deep luxury black */
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .premium-h1 {
-        font-family: 'Syncopate', sans-serif;
-        font-weight: 900;
-        font-size: clamp(2.5rem, 8vw, 5.5rem);
-        line-height: 1.1;
-        color: #FFFFFF;
-        text-transform: uppercase;
-        letter-spacing: -1px;
-        margin: 0;
-        animation: textFloat 6s ease-in-out infinite;
-    }
-
-    .premium-h1 span {
-        display: block; /* Ensures it has its own space */
-        color: transparent;
-        -webkit-text-stroke: 1.5px #FFFFFF;
-        font-style: italic;
-        padding-right: 40px; /* FIXED: Prevents the 'e' from clipping */
-        letter-spacing: 5px;   /* FIXED: Opens up the 'Infrastructure' for legibility */
-        margin-top: 10px;
-        opacity: 0.9;
-    }
-
-    .premium-p {
-        font-family: 'Inter', sans-serif;
-        font-size: 1.1rem;
-        line-height: 1.8;
-        color: rgba(255, 255, 255, 0.9); /* Pure bright white with slight softness */
-        max-width: 600px;
-        font-weight: 400;
-        letter-spacing: 0.5px;
-        border-left: 2px solid #DAA520; /* Luxury gold accent line */
-        padding-left: 25px;
-        margin-top: 30px;
-    }
-
-    .premium-p strong {
-        color: #DAA520; /* Gold highlight */
-        font-weight: 700;
-        text-transform: uppercase;
-        font-size: 0.9rem;
-        letter-spacing: 2px;
-    }
-</style>
-
-<div class="premium-hero-container">
-    <h1 class="premium-h1">
-        Precision 
-        <span>Infrastructure.</span>
-    </h1>
-    
-    <p class="premium-p">
-        <strong>100% Black-owned</strong><br>
-        Construction enterprise specializing in high-impact Building, Civil Engineering, and Technical Electrical solutions.
-    </p>
-</div>
+        <span style="color: var(--accent); font-size: 0.6rem; font-weight: 700; margin-bottom: 10px; display: block; font-family: 'Syncopate';">Established 2017</span>
+        
+        <div class="premium-hero-container">
+            <h1 class="premium-h1">
+                Precision 
+                <span>Infrastructure.</span>
+            </h1>
+            
+            <p class="premium-p">
+                <strong style="color: #DAA520; text-transform: uppercase; font-size: 0.8rem; letter-spacing: 1px;">100% Black-owned</strong><br>
+                Construction enterprise specializing in high-impact Building, Civil Engineering, and Technical Electrical solutions.
+            </p>
+        </div>
         <a href="#contact" class="cta-button">REQUEST CONSULTATION</a>
     </section>
 
     <div class="ticker">
         <div class="ticker-inner">
-            CSD: MAAA1568982 • CIDB: 10237509 • SARS COMPLIANT • COIDA CERTIFIED • CIPC: 2017/420/520/07 • 100% BLACK OWNED • CSD: MAAA1568982 • CIDB: 10237509 • SARS COMPLIANT • COIDA CERTIFIED
+            CSD: MAAA1568982 • CIDB: 10237509 • SARS COMPLIANT • COIDA CERTIFIED • CIPC: 2017/420/520/07 • 100% BLACK OWNED • CSD: MAAA1568982 • CIDB: 10237509
         </div>
     </div>
 
+</body>
+</html>
     <section id="services">
         <span class="section-tag">Core Capabilities</span>
         <h2 style="margin-bottom: 50px;">Our Disciplines</h2>
